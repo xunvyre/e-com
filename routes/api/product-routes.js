@@ -1,23 +1,58 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
-
-// get all products
+//get all products
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll
+  ({
+      include: 
+      [
+        {
+          model: Category,
+          attributes: ['category_name']
+        },
+        {
+          model: Tag,
+          attributes: ['tag_name']
+        }
+      ]
+  })
+    .then(productData => res.json(productData))
+    .catch(err =>
+    {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-// get one product
+//get single product by id
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findOne
+  ({
+    where: {id: req.params.id},
+    include:
+    [
+      {
+        model: Category,
+        attributes: ['category_name']
+      },
+      {
+        model: Tag,
+        attributes: ['tag_name']
+      }
+    ]
+  })
+    .then(productData => res.json(productData))
+    .catch(err =>
+    {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-// create new product
+//create new product (pre-existing code)
 router.post('/', (req, res) => {
-  /* req.body should look like this...
+  /*expecting req.body:
     {
       product_name: "Basketball",
       price: 200.00,
@@ -47,7 +82,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+//update product (pre-existing code)
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -89,8 +124,25 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+//delete product by id
+router.delete('/:id', (req, res) =>
+{
+  Product.destroy
+  ({ where: {id: req.params.id} })
+    .then(productData =>
+    {
+      if (!productData)
+      {
+        res.status(404).json({message: 'No product exists under given ID.'});
+        return;
+      }
+      res.json(productData);
+    })
+    .catch(err =>
+    {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
