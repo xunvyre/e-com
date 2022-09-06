@@ -8,7 +8,8 @@ Given a completed database and server, I was asked to connect the two via API ro
 * [Future Development](https://github.com/xunvyre/e-com#future-development)
 * [Credits](https://github.com/xunvyre/e-com#credits)
 ## Installation
-You will need to install Express.js, dotenv, MySQL2, and Sequelize through NPM. SQL is also required for the database to function properly.
+You will need to install Express.js, dotenv, MySQL2, and Sequelize through NPM. MySQL is also required for the database to function properly.
+With dotnev, you will create your own .env file with your MySQL credentials.
 ## Usage
 [Click here to view the official demo video!](https://youtu.be/zscnGHXIl8E)
 ## Future Development
