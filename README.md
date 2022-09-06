@@ -10,7 +10,7 @@ Given a completed database and server, I was asked to connect the two via API ro
 ## Installation
 You will need to install Express.js, dotenv, MySQL2, and Sequelize through NPM. SQL is also required for the database to function properly.
 ## Usage
-VIDEO HERE
+[Click here to view the official demo video!](https://youtu.be/zscnGHXIl8E)
 ## Future Development
 I would like to add a front end to this project at some point in the future.
 ## Credits
