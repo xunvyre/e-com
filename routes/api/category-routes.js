@@ -79,7 +79,8 @@ router.put('/:id', (req, res) => {
 });
 
 //delete category by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) =>
+{
   Category.destroy({where: {id: req.params.id}})
     .then(categoryData =>
     {
